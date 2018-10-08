@@ -31,9 +31,9 @@ import Collection from 'ol/Collection';
 import { bbox as bboxStrategy } from 'ol/loadingstrategy.js';
 import { register } from 'ol/proj/proj4.js';
 import proj4 from 'proj4';
-import Projection from 'ol/proj/Projection.js';
+// import Projection from 'ol/proj/Projection.js';
 import WadWmsLayer from './WadWmsLayer';
-
+import Shared from './Shared';
 
 const mousePositionControl = new MousePosition({
     coordinateFormat: createStringXY(4),
@@ -65,6 +65,8 @@ export default class PrintingMap {
         //     extent: transformExtent([12.365956, 50.585565, 12.908844, 50.9645759], 'EPSG:4326','EPSG:25833')
         //   });
 
+        // const overlayGrp = new Group({ layers: [new WadWmsLayer()] });
+        // overlayGrp.set("title", "Overlays");
         this.map = new Map({
             controls: defaultControls({ attributionOptions: { collapsible: true } }).extend([mousePositionControl]),
             target: 'map',
@@ -75,10 +77,11 @@ export default class PrintingMap {
                     new WadWmsLayer(),
                     new TileLayer({
                         title: 'OSM',
+                        name: 'OSM',
                         type: 'base',
                         visible: false,
                         source: new OSM()
-                    }),
+                    })
                     // new TileLayer({
                     //     title: 'Bing',
                     //     type: 'base',
@@ -93,7 +96,7 @@ export default class PrintingMap {
             view: new View({
                 center: center,
                 extent:  transformExtent([12.365956, 50.585565, 12.908844, 50.9645759], 'EPSG:4326','EPSG:25833'),               
-                maxZoom: 19,  
+                maxZoom: 23,  
                 projection: get('EPSG:25833'),              
                 //resolution: 100   
                 zoom: zoom ? zoom : 12,
@@ -119,7 +122,11 @@ export default class PrintingMap {
         this.showPrintBox = false;
         this.interaktionen = true;
         this.showUserFeatures = false;
-        // console.log("EPSG:Code",  this.map.getView().getProjection().getCode());
+        const mapLayers = Shared.getMapLayers(this.map);
+        console.log("Layers",  mapLayers);
+        // mapLayers.forEach(l => console.log(l.get('name')));  
+        const mapNames = mapLayers.map(l => l.get('name')); 
+        console.log("Layers",  mapNames);     
     }
 
     get epsgCodeFromMap() {
@@ -241,7 +248,7 @@ export default class PrintingMap {
             features: [],
         });
 
-        this.printLayer = new VectorLayer({
+        this.printLayer = new VectorLayer({           
             source: this.printSource,
             style: function (feature) {
                 let featId = feature.getId();
@@ -397,6 +404,7 @@ export default class PrintingMap {
         });
 
         const vector = new VectorLayer({
+            name: 'KartenFeatures',
             source: vectorSource,
             style: new Style({
                 fill: new Fill({

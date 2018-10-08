@@ -15,5 +15,6 @@ export default class SachsenWmsDopLayer extends TileLayer {
         super({ source: src, visible: true });
         this.set("title", "SachenDop");
         this.set("type", "base");
+        this.set("name", "SNDOP");
     }
 }
