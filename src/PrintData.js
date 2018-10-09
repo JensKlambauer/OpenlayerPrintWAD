@@ -36,13 +36,18 @@ export default class PrintData {
         this.epsg = epsg_code;
     }
 
+    set set_mapLayer(mapLayer) {
+        this.mapLayer = mapLayer;
+    }
+
     toJSON() {
         return {
             extents: this.extents,
             id_projekt: this.id_projekt,
             template: this.template,
             scale: this.scale,
-            epsg_code: this.epsg
+            epsg_code: this.epsg,
+            map_layer: this.mapLayer
         }
     }
 }

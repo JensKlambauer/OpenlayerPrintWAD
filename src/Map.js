@@ -121,16 +121,26 @@ export default class PrintingMap {
 
         this.showPrintBox = false;
         this.interaktionen = true;
-        this.showUserFeatures = false;
-        const mapLayers = Shared.getMapLayers(this.map);
-        console.log("Layers",  mapLayers);
-        // mapLayers.forEach(l => console.log(l.get('name')));  
-        const mapNames = mapLayers.map(l => l.get('name')); 
-        console.log("Layers",  mapNames);     
+        this.showUserFeatures = false;      
     }
 
     get epsgCodeFromMap() {
         return this.map.getView().getProjection().getCode();
+    }
+
+    /**
+     * Returns all visible layers from the given map.
+     * @return {Array} The layers.
+    */
+    get mapLayer() {
+        const mapLayers = Shared.getMapLayers(this.map);
+        console.log("Layers",  mapLayers);
+        // mapLayers.forEach(l => console.log(l.get('name')));  
+        const mapNames = mapLayers
+            .filter(layer => layer.get('name'))
+            .map(l => l.get('name')); 
+
+        return mapNames;  
     }
 
     // get extentsPrint() {

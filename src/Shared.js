@@ -48,10 +48,12 @@ export class Shared {
     layers.forEach(layer => {
       if (layer instanceof OlLayerGroup) {
         Shared.getMapLayers(layer).forEach(l => {
-          mapLayers.push(l);
+          if(l.getVisible())
+            mapLayers.push(l);
         });
       } else {
-        mapLayers.push(layer);
+        if(layer.getVisible())
+           mapLayers.push(layer);
       }      
     });
 

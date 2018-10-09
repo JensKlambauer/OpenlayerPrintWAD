@@ -107,6 +107,9 @@ document.querySelector("#KartenDruck").addEventListener("click", (evt) => {
     return;
   }
 
+  // von sichbaren Layern der Karte, Layernamen holen
+  printData.set_mapLayer = map.mapLayer;
+
   let printDataArr = [];
   map.selectedPrintFeatures.forEach((printExt) => {
     printData.set_extents = printExt;
