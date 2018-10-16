@@ -13,7 +13,7 @@ const dist = path.join(root, "dist");
 module.exports = {
   node: { fs: 'empty' },
   entry: {
-    // 'babel-polyfill': ['babel-polyfill'],
+   'babel-polyfill': ['babel-polyfill'],
     app: path.join(root, "src", "main.js")
   },
   devtool: 'source-map',
