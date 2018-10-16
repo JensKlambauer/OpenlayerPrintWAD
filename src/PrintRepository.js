@@ -1,4 +1,4 @@
-import { GetRequest, PostRequest, GetRequestFetch } from "./AjaxRequest";
+import { GetRequest, GetRequestFetch, PostRequestFetch } from "./AjaxRequest";
 
 export default class PrintRepository {
     constructor(token) {
@@ -17,7 +17,7 @@ export default class PrintRepository {
 
     async postPrintData(data) {
         let json = JSON.stringify(data);
-        await PostRequest(process.env.API_PRINT_URL + '/PrintMap', json, this.token);
+        await PostRequestFetch(process.env.API_PRINT_URL + '/PrintMap', json, this.token);
     }
 
     async getFeatures(idProj) {

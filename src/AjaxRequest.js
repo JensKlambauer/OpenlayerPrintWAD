@@ -24,28 +24,35 @@ export function GetRequestFetch(url, token) {
             return response.text()
         }, function (error) {
             error.message //=> String
-            console.log("Fehler" + error.message)
+            console.log("GET Fehler" + error.message)
         })
 }
 
-export function PostRequestFetch(url, data, token) {
-    const getReq = fetch(url, {
-        method: "POST",
-        body: JSON.stringify(data),
+export function PostRequestFetch(url, data, token) {    
+    const obj = {
+        method: 'POST',
+        body: data,
         headers: {
-            "Content-Type": "application/json"
-        },
-        credentials: "same-origin"
-    }).then(function (response) {
-        response.status     //=> number 100–599
-        response.statusText //=> String
-        response.headers    //=> Headers
-        response.url        //=> String
+            'Accept': 'application/json',
+            'Content-Type': 'application/json; charset=utf-8'
+        }
+    };
 
-        return response.text()
-    }, function (error) {
-        error.message //=> String
-    })
+    if (token) {
+        obj.headers.Authorization = 'Bearer ' + token;
+    }
+    return window.fetch(url, obj)
+        .then(function (response) {
+            response.status     //=> number 100–599
+            response.statusText //=> String
+            response.headers    //=> Headers
+            response.url        //=> String
+
+            return response.text()
+        }, function (error) {
+            error.message //=> String
+            console.log("POST Fehler" + error.message)
+        })
 }
 
 export function GetRequest(url, token) {

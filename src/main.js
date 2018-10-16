@@ -118,12 +118,14 @@ document.querySelector("#KartenDruck").addEventListener("click", (evt) => {
 
   // console.log(printDataArr);
   (async function () {
+    showSpinner();
     await printService.postPrintData(printDataArr);
   })()
     .then(() => {
+      hideSpinner();
       alert("Erfolgreich - Druck abgeschlossen")
     })
-    .catch(e => { alert("Fehler beim Drucken"); console.error(e); });
+    .catch(e => { hideSpinner(); alert("Fehler beim Drucken"); console.error(e); });
 });
 
 /**   
@@ -210,6 +212,14 @@ function getLastZoom() {
   }
 
   return 12;
+}
+
+function showSpinner() {
+  document.getElementById('loader').style.display = 'block';
+}
+
+function hideSpinner() {
+  document.getElementById('loader').style.display = 'none';
 }
 
 // forEach(obj, (key, value, obj ) => {
