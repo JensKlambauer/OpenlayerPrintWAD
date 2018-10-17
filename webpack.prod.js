@@ -4,7 +4,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ExtractCssChunks = require("extract-css-chunks-webpack-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // const devMode = process.env.NODE_ENV !== 'production'
 
@@ -50,9 +50,7 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|gif|ico)$/i,
-        use: [
-            'file-loader?name=[name].[ext]'
-        ]
+        use: ['file-loader?name=img/[name].[ext]']
       }
     ]
   },
@@ -75,9 +73,9 @@ module.exports = {
         chunkFilename: "[id].css"
       }
     ),    
-    new CopyWebpackPlugin([
-      { from: "assets/images/animatedCircle.gif", to: dist }
-    ]),
+    // new CopyWebpackPlugin([
+    //   { from: "assets/images/animatedCircle.gif", to: dist }
+    // ]),
     new Dotenv()
   ],
   optimization: {

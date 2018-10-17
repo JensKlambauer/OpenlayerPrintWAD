@@ -26,3 +26,13 @@ html, body {
 #druckconfig {
     padding: 10px;
 }
+
+#printloader {
+    display: none;
+    /* padding: 1px 1px 1px 1px; */
+    width: 66px;
+    height: 66px;
+    border: 1px solid rgb(0, 0, 0);    
+    background-color: rgb(255, 255, 255);
+    opacity: 1.0;
+}

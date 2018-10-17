@@ -215,11 +215,21 @@ function getLastZoom() {
 }
 
 function showSpinner() {
-  document.getElementById('loader').style.display = 'block';
+  map.showLoader();
+  document.querySelector("#Masstab").disabled = true;
+  document.querySelector("#Druckformate").disabled = true;
+  document.querySelector("#KartenDruck").disabled = true;
+  document.querySelector("#Druckeinstellungen").disabled = true;
+  document.querySelector("#map").disabled = true;
 }
 
 function hideSpinner() {
-  document.getElementById('loader').style.display = 'none';
+  map.hideLoader();
+  document.querySelector("#Masstab").disabled = false;
+  document.querySelector("#Druckformate").disabled = false;
+  document.querySelector("#KartenDruck").disabled = false;
+  document.querySelector("#Druckeinstellungen").disabled = false;
+  document.querySelector("#map").disabled = false;
 }
 
 // forEach(obj, (key, value, obj ) => {

@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const Dotenv = require('dotenv-webpack');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // const devMode = process.env.NODE_ENV !== 'production'
 
@@ -19,10 +18,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
-          // options: {
-          //   presets: ["env"]
-          // }
+          loader: "babel-loader"
         }
       },
       {
@@ -43,18 +39,13 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|gif|ico)$/i,
-        use: [
-            'file-loader?name=[name].[ext]'
-        ]
+        use: ['file-loader?name=img/[name].[ext]']
       }
     ]
   },
   output: {
     path: dist,
-    filename: "[name].js",
-    // library: 'karte',
-    // libraryTarget: 'var',
-    // libraryExport: 'default'
+    filename: "[name].js"
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
@@ -63,10 +54,7 @@ module.exports = {
       favicon: 'assets/images/favicon.ico',
       template: path.join(root, "src", "index.html"),
       filename: path.join(dist, "index.html")
-    }),
-    new CopyWebpackPlugin([
-      { from: "assets/images/animatedCircle.gif", to: dist }
-    ]),
+    }),    
     new Dotenv({
       path: path.join(__dirname, '.env'),
       systemvars: true

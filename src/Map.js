@@ -25,7 +25,7 @@ import { unByKey } from 'ol/Observable';
 import Select from 'ol/interaction/Select'
 import { click, pointerMove, altKeyOnly } from 'ol/events/condition.js';
 import WKT from 'ol/format/WKT.js';
-import BingMaps from 'ol/source/BingMaps.js';
+// import BingMaps from 'ol/source/BingMaps.js';
 import { MouseWheelZoom, DragPan } from 'ol/interaction.js';
 import Collection from 'ol/Collection';
 import { bbox as bboxStrategy } from 'ol/loadingstrategy.js';
@@ -34,6 +34,7 @@ import proj4 from 'proj4';
 // import Projection from 'ol/proj/Projection.js';
 import WadWmsLayer from './WadWmsLayer';
 import Shared from './Shared';
+import Overlay from 'ol/Overlay.js';
 
 const mousePositionControl = new MousePosition({
     coordinateFormat: createStringXY(4),
@@ -121,7 +122,15 @@ export default class PrintingMap {
 
         this.showPrintBox = false;
         this.interaktionen = true;
-        this.showUserFeatures = false;      
+        this.showUserFeatures = false;
+        
+        this.loader = new Overlay({            
+            positioning: 'center-center',
+            // position: this.map.getView().getCenter(),
+            element: document.getElementById('printloader'),
+            stopEvent: true
+          });
+        this.map.addOverlay(this.loader);
     }
 
     get epsgCodeFromMap() {
@@ -134,7 +143,7 @@ export default class PrintingMap {
     */
     get mapLayer() {
         const mapLayers = Shared.getMapLayers(this.map);
-        console.log("Layers",  mapLayers);
+        // console.log("Layers",  mapLayers);
         // mapLayers.forEach(l => console.log(l.get('name')));  
         const mapNames = mapLayers
             .filter(layer => layer.get('name'))
@@ -142,14 +151,6 @@ export default class PrintingMap {
 
         return mapNames;  
     }
-
-    // get extentsPrint() {
-    //     return this.ext;
-    // }
-
-    // set printExtents(ext) {
-    //     this.ext = ext;
-    // }
 
     get selectedPrintFeatures() {
         const selFeats = this.select.getFeatures();
@@ -435,5 +436,20 @@ export default class PrintingMap {
 
         this.map.addLayer(vector);
         this.showUserFeatures = true;
+    }
+
+    showLoader() {
+        document.querySelector('#printloader').style.display = "block";        
+        // const width = document.querySelector('#printloader').offsetWidth;
+        // console.log("width", width)
+        // const centerX =- width / 2;
+        // const position = [centerX, centerX];
+        // console.log("Offset", position)
+        // this.loader.setOffset(position);
+        this.loader.setPosition(this.map.getView().getCenter());
+    }
+
+    hideLoader() {
+        document.querySelector('#printloader').style.display = "none";
     }
 }
