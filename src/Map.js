@@ -35,6 +35,7 @@ import proj4 from 'proj4';
 import WadWmsLayer from './WadWmsLayer';
 import Shared from './Shared';
 import Overlay from 'ol/Overlay.js';
+import Point from 'ol/geom/Point.js';
 
 const mousePositionControl = new MousePosition({
     coordinateFormat: createStringXY(4),
@@ -451,5 +452,28 @@ export default class PrintingMap {
 
     hideLoader() {
         document.querySelector('#printloader').style.display = "none";
+    }
+
+    getWktGeomdata (feature) {
+        try {
+            const format = new WKT();
+            const geomdata = format.writeFeature(feature, {
+                dataProjection: 'EPSG:4326',
+                featureProjection: get('EPSG:25833'),
+                decimals: 6
+            });
+            ////console.log(geomdata);
+            return geomdata;
+        } catch (e) {
+            return '';
+        }
+    };
+
+    getPositionPoint(idProjekt) {
+        const feature = new Feature({ geometry: new Point(this.map.getView().getCenter()) });
+        const position = this.getWktGeomdata(feature);
+        const zoom = this.map.getView().getZoom();
+        const daten = { idProj: idProjekt, position: position, zoom: zoom };
+        return daten;
     }
 }

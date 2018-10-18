@@ -6,9 +6,10 @@ import './styles.css';
 import PrintingMap, { DOTS_PER_INCH } from './Map';
 import PrintService from './PrintService';
 import PrintData from './PrintData';
+import { PostRequestFetch } from "./AjaxRequest";
 
 // Test IdProjekt mit QGIS
-let idProj = 1430;
+let idProj = '';
 let proj = document.querySelector("#IdProjekt");
 if (proj) {
   idProj = proj.value;
@@ -56,9 +57,20 @@ document.querySelector("#Druckeinstellungen").addEventListener("click", (evt) =>
       addTemplates(templatesMap);
       scalesMap = JSON.parse(scales);
       addScales(scalesMap);
-      map.disableIntact();
+      map.disableIntact();     
     })
     .catch(e => { alert("Fehler - Verbindung mit Server"); console.error(e); });
+
+  // // Position im Portal Speichern
+  // (async function () { 
+  //     console.log("Position", map.getPositionPoint(idProj));
+  //     const json = JSON.stringify(map.getPositionPoint(idProj));
+  //     await PostRequestFetch(process.env.SAVE_POSITION_URL, json);
+  //   })()
+  //   .then(() => {
+  //     console.log("Position erfolgreich gespeichert.");
+  //   })
+  //   .catch(e => { console.error(e); });
 });
 
 document.querySelector("#Druckformate").addEventListener("change", function () {
