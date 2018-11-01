@@ -6,7 +6,7 @@ const Dotenv = require('dotenv-webpack');
 // const devMode = process.env.NODE_ENV !== 'production'
 
 const root = path.resolve(__dirname);
-const dist = path.join(root, "dist");
+// const dist = path.join(root, "dist");
 
 module.exports = {
   node: { fs: 'empty' },
@@ -28,32 +28,32 @@ module.exports = {
           { loader: 'css-loader' },
         ]
       },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader",
-            options: { minimize: true }
-          }
-        ]
-      },
+      // {
+      //   test: /\.html$/,
+      //   use: [
+      //     {
+      //       loader: "html-loader",
+      //       options: { minimize: true }
+      //     }
+      //   ]
+      // },
       {
         test: /\.(jpe?g|png|gif|ico)$/i,
         use: ['file-loader?name=img/[name].[ext]']
       }
     ]
   },
-  output: {
-    path: dist,
-    filename: "[name].js"
-  },
+  // output: {
+  //   path: dist,
+  //   filename: "[name].js"
+  // },
   plugins: [
-    new webpack.NamedModulesPlugin(),
+    // new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
       favicon: 'assets/images/favicon.ico',
       template: path.join(root, "src", "index.html"),
-      filename: path.join(dist, "index.html")
+      filename: "./index.html"
     }),    
     new Dotenv({
       path: path.join(__dirname, '.env'),
@@ -61,7 +61,7 @@ module.exports = {
     })
   ],
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    // contentBase: path.join(__dirname, "dist"),
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Headers': '*'
