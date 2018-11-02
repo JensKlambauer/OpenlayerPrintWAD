@@ -8,8 +8,13 @@ export default class PrintService {
 
     async getApiAccessToken() {
         this.connection = new WebApiAuthRepository(this.webApiTokenUrl);
-        await this.connection.getAccessToken();
-        this.token = this.connection.tokenWebApi['access_token'];
+        const token = await this.connection.getAccessToken();
+        if (token) {
+            this.token = token['access_token'];
+        } else {
+            this.token = null;
+            throw "Fehler - Token nicht vorhanden";
+        }
     }
 
     async getTemplates() {

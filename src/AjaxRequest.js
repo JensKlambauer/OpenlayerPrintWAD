@@ -24,7 +24,7 @@ export function GetRequestFetch(url, token) {
             return response.text()
         }, function (error) {
             error.message //=> String
-            console.log("GET Fehler" + error.message)
+            console.log("GET Fehler - " + error.message)
         })
 }
 
@@ -41,6 +41,7 @@ export function PostRequestFetch(url, data, token) {
     if (token) {
         obj.headers.Authorization = 'Bearer ' + token;
     }
+
     return window.fetch(url, obj)
         .then(function (response) {
             response.status     //=> number 100–599
@@ -51,7 +52,7 @@ export function PostRequestFetch(url, data, token) {
             return response.text()
         }, function (error) {
             error.message //=> String
-            console.log("POST Fehler" + error.message)
+            console.log(`POST Fehler - ${error.message}`)
         })
 }
 

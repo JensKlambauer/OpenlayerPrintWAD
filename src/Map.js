@@ -389,26 +389,27 @@ export default class PrintingMap {
                 // URL GetFeature aus Config .env
                 // const url = process.env.KF_RB_URL;
                 (async function () {
-                    res = await printService.getFeatures(idProj);
-                    // res = await PostRequest(url, json);
+                    res = await printService.getFeatures(idProj);                    
                 })()
-                    .then(() => {
-                        // console.log(res);                       
-                        const resJson = JSON.parse(res);
-                        // console.log(resJson.error);
-                        if (resJson.error === 0) {
-                            const format = new WKT();
-                            resJson.data.features.forEach(function (feat) {
-                                var feature = format.readFeature(feat.Wkt, {
-                                    dataProjection: 'EPSG:4326',
-                                    featureProjection: mapProjection
+                    .then(() => {                        
+                        if(res) {
+                            const resJson = JSON.parse(res);
+                            // console.log(resJson.error);
+                            if (resJson.error === 0) {
+                                const format = new WKT();
+                                resJson.data.features.forEach(function (feat) {
+                                    const feature = format.readFeature(feat.Wkt, {
+                                        dataProjection: 'EPSG:4326',
+                                        featureProjection: mapProjection
+                                    });
+                                    if (feature) {
+                                        feature.setId(feat.FeatId);
+                                        vectorSource.addFeature(feature);
+                                    }
                                 });
-                                if (feature) {
-                                    feature.setId(feat.FeatId);
-                                    vectorSource.addFeature(feature);
-                                }
-                            });
-                        }
+                            }
+                        }                      
+                       
                     })
                     .catch(e => { console.error(e); });
             },

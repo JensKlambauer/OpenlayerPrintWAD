@@ -2,7 +2,7 @@ import { PostRequestFetch } from "./AjaxRequest";
 
 export default class WebApiAuthRepository {
     constructor(url) {
-        this.url = url;
+        this.url = url;        
     }
 
     get tokenWebApi() {
@@ -13,6 +13,11 @@ export default class WebApiAuthRepository {
         const loginData = "grant_type=password&username=" + encodeURIComponent(process.env.API_USER) + "&password=" + encodeURIComponent(process.env.API_PASS);
         // let json = JSON.stringify(loginData);
         const access_tokens = await PostRequestFetch(this.url, loginData);
-        this.token = JSON.parse(access_tokens);
+        if(access_tokens) {
+            this.token = JSON.parse(access_tokens);
+            return this.token;
+        } else {
+            return null;
+        }           
     }
 }
