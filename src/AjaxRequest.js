@@ -1,5 +1,15 @@
 import "whatwg-fetch"
 
+// https://www.tjvantoll.com/2015/09/13/fetch-and-errors/
+function handleErrors(response) {
+    if (!response.ok) {
+        // console.log("ErrorResp ", response.text());  
+        response.text().then(text => { var err = JSON.parse(text); console.log(err.Message); });
+        throw new Error(`Fehler - ${ response.statusText }`); 
+    }
+
+    return response.text();
+}
 
 export function GetRequestFetch(url, token) {
     const obj = {
@@ -25,7 +35,7 @@ export function GetRequestFetch(url, token) {
         }, function (error) {
             error.message //=> String
             console.log("GET Fehler - " + error.message)
-        })
+        });
 }
 
 export function PostRequestFetch(url, data, token) {    
@@ -43,17 +53,10 @@ export function PostRequestFetch(url, data, token) {
     }
 
     return window.fetch(url, obj)
+        .then(handleErrors)
         .then(function (response) {
-            response.status     //=> number 100–599
-            response.statusText //=> String
-            response.headers    //=> Headers
-            response.url        //=> String
-
-            return response.text()
-        }, function (error) {
-            error.message //=> String
-            console.log(`POST Fehler - ${error.message}`)
-        })
+            return response;
+        });
 }
 
 export function GetRequest(url, token) {

@@ -6,7 +6,6 @@ import './styles.css';
 import PrintingMap, { DOTS_PER_INCH } from './Map';
 import PrintService from './PrintService';
 import PrintData from './PrintData';
-import { PostRequestFetch } from "./AjaxRequest";
 
 // Test IdProjekt mit QGIS
 let idProj = '';

@@ -27,7 +27,7 @@ export default class PrintService {
         return await printConfig.listMapScales();
     }
 
-    async postPrintData(data) {
+    async postPrintData(data) {       
         const printConfig = new PrintRepository(this.token);
         await printConfig.postPrintData(data);
     }
