@@ -27,6 +27,25 @@ printData.set_epsgCode = map.epsgCodeFromMap;
 let selectedDpi = 96;
 
 ready(function () {
+  // const xhr = new XMLHttpRequest();
+  // // xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+  // xhr.onreadystatechange = function (e) {
+  //     if (xhr.readyState === 4) {
+  //         if (xhr.status === 200) {
+  //             // resolve(xhr.response)
+  //             console.log("xhr.response", xhr.response)
+  //         } else {
+  //             console.log("Error", xhr.status, xhr.responseText)  
+  //             // console.log("xhr", xhr)             
+  //         }
+  //     }
+  // }
+  // xhr.ontimeout = function () {
+  //     reject('timeout')
+  // }
+  // xhr.open('get', "http://localhost:63000/api/v1/Print/Features?idProj=xyt", true)  
+  // xhr.send()
+
   console.log("Karte ready!");
   console.log(DOTS_PER_INCH);
   // console.log(process.env.KF_RB_URL);
