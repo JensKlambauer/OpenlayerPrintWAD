@@ -5,9 +5,9 @@ export default class WadWmsLayer extends TileLayer {
 
     constructor() {
         const src = new TileWMS({
-            url: "http://192.168.0.247:8085/wad/qgis_mapserv.fcgi.exe",    // http://5.175.25.253/wad/?
+            url: "https://geodatendienste.de/wad/?",   //"http://192.168.0.247:8085/wad/qgis_mapserv.fcgi.exe",  http://5.175.25.253/wad/? 
             params: {
-                LAYERS: ['WAD'],    //['SESSION.Kanal\\Topografie', 'SESSION.Kanal\\Kanal'],
+                LAYERS: ['SESSION.Kanal\\Topografie', 'SESSION.Kanal\\Kanal'],    //,['WAD']
                 TRANSPARENT: true   
             },
             projection: 'EPSG:25833',          
