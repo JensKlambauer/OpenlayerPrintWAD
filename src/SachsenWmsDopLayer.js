@@ -12,7 +12,7 @@ export default class SachsenWmsDopLayer extends TileLayer {
             projection: 'EPSG:25833'                   
         });
 
-        super({ source: src, visible: true });
+        super({ source: src, visible: false });
         this.set("title", "SachenDop");
         this.set("type", "base");
         this.set("name", "SNDOP");

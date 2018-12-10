@@ -14,7 +14,7 @@ export default class WadWmsLayer extends TileLayer {
             transition: 0                 
         });
 
-        super({ source: src, visible: false });
+        super({ source: src, visible: true });
         this.set("title", "WAD Kanal");
         this.set("name", "WAD");
         // this.setOpacity(0.5);

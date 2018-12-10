@@ -189,12 +189,13 @@ export default class PrintingMap {
         // console.log("width: " + this.width + " height: " + this.height);
         // console.log(this.map.getSize());
         let bounds = this.map.getView().calculateExtent(this.map.getSize());
+        // console.log("bounds", bounds);
 
         this.featureCount = 0;
         let breite = center[0];
         let rightBound = center[0];
         let hoehe = center[1];
-        while (hoehe < bounds[3]) {
+        while (hoehe < (bounds[3] + this.height)) {
             while (rightBound < bounds[2]) {
                 const extb = this.getExtPrintView([breite, hoehe])
                 this.addFeaturePrint(extb);
@@ -208,7 +209,7 @@ export default class PrintingMap {
 
         breite = center[0];
         hoehe = center[1];
-        while (hoehe < bounds[3]) {
+        while (hoehe < (bounds[3] + this.height)) {
             while (breite > bounds[0]) {
                 const ext1 = this.getExtPrintView([breite - (ext[2] - ext[0]), hoehe])
                 this.addFeaturePrint(ext1);
@@ -355,7 +356,7 @@ export default class PrintingMap {
         this.printSource.addFeature(feature);
     }
 
-    disableIntact(e) {
+    disableInteractions(e) {
         const interactions = this.interaktionen;
         this.map.getInteractions().forEach(function (interaction) {
             if (interaction instanceof MouseWheelZoom) {

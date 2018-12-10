@@ -75,7 +75,7 @@ document.querySelector("#Druckeinstellungen").addEventListener("click", (evt) =>
       addTemplates(templatesMap);
       scalesMap = JSON.parse(scales);
       addScales(scalesMap);
-      map.disableIntact();     
+      // map.disableInteractions();     
     })
     .catch(e => { alert("Fehler - Verbindung mit Server"); console.error(e); });
 
