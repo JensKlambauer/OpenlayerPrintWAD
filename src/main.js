@@ -153,7 +153,7 @@ document.querySelector("#KartenDruck").addEventListener("click", (evt) => {
   })()
     .then(() => {
       hideSpinner();
-      alert("Erfolgreich - Druck abgeschlossen")
+      alert("Erfolgreich - Druckvorgang wurde ausgelöst. Der Vorgang kann einige Minuten dauern. Diese Seite kann geschlossen werden.")
     })
     .catch(e => { hideSpinner(); alert("Fehler beim Drucken"); console.error(e); });
 });
