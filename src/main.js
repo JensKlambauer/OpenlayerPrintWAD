@@ -43,7 +43,7 @@ ready(function () {
   // xhr.ontimeout = function () {
   //     reject('timeout')
   // }
-  // xhr.open('get', "http://localhost:63000/api/v1/Print/Features?idProj=xyt", true)  
+  // xhr.open('get', "http://localhost:50000/api/v1/Print/Features/e295550e-4e4e-4039-9501-b1e32bad3a7f", true)  
   // xhr.send()
 
   console.log("Karte ready!");

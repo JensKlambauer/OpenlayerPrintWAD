@@ -14,9 +14,9 @@ function handleErrors(response) {
 export function GetRequestFetch(url, token) {
     const obj = {
         method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+        headers: {            
+            // 'Accept': 'application/json',
+            // 'Content-Type': 'application/json; charset=utf-8'
         }
     };
 
@@ -26,11 +26,10 @@ export function GetRequestFetch(url, token) {
 
     return window.fetch(url, obj)
         .then(function (response) {
-            response.status     //=> number 100–599
-            response.statusText //=> String
-            response.headers    //=> Headers
-            response.url        //=> String
-
+            // response.status     //=> number 100–599
+            // response.statusText //=> String
+            // response.headers    //=> Headers
+            // response.url        //=> String            
             return response.text()
         }, function (error) {
             error.message //=> String

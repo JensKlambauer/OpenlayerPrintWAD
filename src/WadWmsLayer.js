@@ -5,16 +5,16 @@ export default class WadWmsLayer extends TileLayer {
 
     constructor() {
         const src = new TileWMS({
-            url: "https://geodatendienste.de/wad/?",   //"http://192.168.0.247:8085/wad/qgis_mapserv.fcgi.exe",  http://5.175.25.253/wad/? 
+            url: "http://localhost:50000/custom",   //"http://192.168.0.247:8085/wad/qgis_mapserv.fcgi.exe",  http://5.175.25.253/wad/? 
             params: {
-                LAYERS: ['SESSION.Kanal\\Topografie', 'SESSION.Kanal\\Kanal'],    //,['WAD']
+                LAYERS: ['WAD'],    //,['SESSION.Kanal\\Topografie', 'SESSION.Kanal\\Kanal']
                 TRANSPARENT: true   
             },
             projection: 'EPSG:25833',          
             transition: 0                 
         });
 
-        super({ source: src, visible: true });
+        super({ source: src, visible: false });
         this.set("title", "WAD Kanal");
         this.set("name", "WAD");
         // this.setOpacity(0.5);

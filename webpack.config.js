@@ -61,11 +61,12 @@ module.exports = {
     })
   ],
   devServer: {
+    // disableHostCheck: true,
     // contentBase: path.join(__dirname, "dist"),
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': '*'
-    },
+    // headers: {
+    //   'Access-Control-Allow-Origin': '*',
+    //   'Access-Control-Allow-Headers': '*'
+    // },
     // compress: true,
     port: 8098,
     // inline: true,
