@@ -36,6 +36,7 @@ import WadWmsLayer from './WadWmsLayer';
 import Shared from './Shared';
 import Overlay from 'ol/Overlay.js';
 import Point from 'ol/geom/Point.js';
+import XYZ from 'ol/source/XYZ.js';
 
 const mousePositionControl = new MousePosition({
     coordinateFormat: createStringXY(4),
@@ -82,7 +83,9 @@ export default class PrintingMap {
                         name: 'OSM',
                         type: 'base',
                         visible: false,
-                        source: new OSM()
+                        source: new XYZ({
+                            url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+                        })
                     })
                     // new TileLayer({
                     //     title: 'Bing',
