@@ -38,7 +38,7 @@ import Overlay from 'ol/Overlay.js';
 import Point from 'ol/geom/Point.js';
 
 const mousePositionControl = new MousePosition({
-    coordinateFormat: createStringXY(4),
+    coordinateFormat: createStringXY(6),
     projection: 'EPSG:4326',
     undefinedHTML: 'außerhalb',
 });
@@ -69,6 +69,12 @@ export default class PrintingMap {
 
         // const overlayGrp = new Group({ layers: [new WadWmsLayer()] });
         // overlayGrp.set("title", "Overlays");
+        // var startResolution = 890.625;
+        // var resolutions = new Array(17);
+        // for (var i = 0, ii = resolutions.length; i < ii; ++i) {
+        //   resolutions[i] = startResolution / Math.pow(2, i);
+        // }
+        // console.log(resolutions);
         this.map = new Map({
             controls: defaultControls({ attributionOptions: { collapsible: true } }).extend([mousePositionControl]),
             target: 'map',
@@ -98,10 +104,10 @@ export default class PrintingMap {
             view: new View({
                 center: center,
                 extent:  transformExtent([12.365956, 50.585565, 12.908844, 50.9645759], 'EPSG:4326','EPSG:25833'),               
-                maxZoom: 23,  
+                maxZoom: 21,  
                 projection: get('EPSG:25833'),              
-                //resolution: 100   
-                zoom: zoom ? zoom : 12,
+                // resolutions: resolutions,  
+                zoom: 12,
             })
         });
         // console.log("map res " + this.map.getView().getResolution());

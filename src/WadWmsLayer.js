@@ -5,7 +5,7 @@ export default class WadWmsLayer extends TileLayer {
 
     constructor() {
         const src = new TileWMS({
-            url: "http://localhost:50000/custom",   //"http://192.168.0.247:8085/wad/qgis_mapserv.fcgi.exe",  http://5.175.25.253/wad/? 
+            url: "http://localhost:8085/wad/qgis_mapserv.fcgi.exe",   //"",  http://5.175.25.253/wad/? 
             params: {
                 LAYERS: ['WAD'],    //,['SESSION.Kanal\\Topografie', 'SESSION.Kanal\\Kanal']
                 TRANSPARENT: true   

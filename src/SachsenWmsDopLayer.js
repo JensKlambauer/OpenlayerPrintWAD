@@ -5,7 +5,7 @@ export default class SachsenWmsDopLayer extends TileLayer {
 
     constructor() {
         const src = new TileWMS({
-            url: "http://localhost:50000/custom", // https://geodienste.sachsen.de/wms_geosn_dop-rgb/guest
+            url: "http://localhost:5000/custom", // https://geodienste.sachsen.de/wms_geosn_dop-rgb/guest
             params: {
                 LAYERS: "SNDOP"   // sn_dop_020
             },
