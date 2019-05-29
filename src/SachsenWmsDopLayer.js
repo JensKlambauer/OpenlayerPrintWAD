@@ -5,11 +5,12 @@ export default class SachsenWmsDopLayer extends TileLayer {
 
     constructor() {
         const src = new TileWMS({
-            url: "http://localhost:50000/custom", // https://geodienste.sachsen.de/wms_geosn_dop-rgb/guest
+            url: "http://localhost:5000/custom", //https://geodienste.sachsen.de/wms_geosn_dop-rgb/guest
             params: {
-                LAYERS: "SNDOP"   // sn_dop_020
+                LAYERS: "sn_dop_020"   // SNDOP
             },
-            projection: 'EPSG:25833'                   
+            projection: 'EPSG:25833',
+            // cacheSize: 2048         
         });
 
         super({ source: src, visible: true });

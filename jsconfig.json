@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "checkJs": true,
+      // "target": "es6",
+      // Point to the JSDoc typed sources when using modules from the ol package
+      "baseUrl": "./",
+      "paths": {
+        "ol": ["node_modules/ol"],
+        "ol/*": ["node_modules/ol/*"]
+      }
+    },
+    "include": [
+      "src/**/*",
+      "node_modules/ol/**/*.js"
+    ]
+  }
