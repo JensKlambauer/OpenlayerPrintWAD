@@ -24,7 +24,7 @@ let selectedScale = null;
 let printService = null;
 let printData = new PrintData(idProj);
 printData.set_epsgCode = map.epsgCodeFromMap;
-let selectedDpi = 96;
+const selectedDpi = 96;
 
 ready(function () {
   // const xhr = new XMLHttpRequest();
@@ -217,13 +217,15 @@ function addScales(scales) {
 /**   
   *
   * @param {Number} dpi DPI View.
-  * @param {Number} value Wert in millimeter.
+  * @param {string} value Wert in millimeter.
   * @returns {Number} Wert in pixel.
   */
-function scaleToPixel(dpi, value) {
-  const dim = parseInt(value);
+function scaleToPixel(dpi, value) {  
+  const dim = parseFloat(value);
+  // console.log("scaleToPixel", Math.round(dpi * dim / 25.4));
   // Umrechnung von Millimeter, DPI in Pixel
-  return Math.round(dpi * dim / 25.4);
+  // return Math.round(dpi * dim / 25.4);
+  return dpi * dim / 25.4;
 }
 
 function getLastPosition() {

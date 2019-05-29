@@ -1,3 +1,4 @@
+// @ts-nocheck
 import OlLayerGroup from 'ol/layer/Group';
 import OlSourceTileWMS from 'ol/source/TileWMS';
 import OlSourceImageWMS from 'ol/source/ImageWMS';
