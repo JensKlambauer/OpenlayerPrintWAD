@@ -1,15 +1,20 @@
 {
-    "compilerOptions": {
-      "checkJs": true,
-      // Point to the JSDoc typed sources when using modules from the ol package
-      "baseUrl": "./",
-      "paths": {
-        "ol": ["node_modules/ol/src"],
-        "ol/*": ["node_modules/ol/src/*"]
-      }
-    },
-    "include": [
-      "src/*.js",
-      "node_modules/ol/**/*.js"
-    ]
-  }  
+  "compilerOptions": {
+    "checkJs": false,
+    // "target": "es6",
+    // Point to the JSDoc typed sources when using modules from the ol package
+    "baseUrl": "./",
+    "paths": {
+      "ol": ["node_modules/ol/src"],
+      "ol/*": ["node_modules/ol/src/*"]
+    }
+  },
+  "include": [
+    "src/*.js",
+    "node_modules/ol/**/*.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*"
+  ]
+}
