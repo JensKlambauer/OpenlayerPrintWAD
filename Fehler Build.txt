@@ -1,0 +1,6 @@
+Fehler mit Node 18
+npm run build funktioniert nicht
+
+funktioniert nicht
+set NODE_OPTIONS=--openssl-legacy-provider
+Downgrade zu Node 16
